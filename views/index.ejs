@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css"/>
+    <title>Weather Wide</title>
+</head>
+<body>
+    
+    <div class="container">
+        <div>
+            <div class="weather-wide-header">
+                <h1 class="app-title">Weather Wide</h1>
+                <div>
+                    <form action="/weatherwide" method="post">
+                        <input class="search-city-input" type="text" placeholder="City" name="cityName" autocomplete="off">
+                        <button class="search-city-button" type="submit" name="">Search</button>
+                    </form>
+                </div>
+            </div>
+            <div class="weather-grid">
+                <div class="current-weather-grid">
+                    <h3 class="current-weather-date"><%= current.date %></h3>
+                    <div class="current-weather">
+                        <div>
+                            <h2 class="current-city"><%= current.currentCity %></h2>
+                            <p class="current-location"><%= current.region %></p>
+                        </div>
+                        <div>
+                            <img src=<%= current.currentIconURL %> alt="weather condition icon">
+                            <h1 class="current-temp"><%= current.currentTemp %>°C</h1>
+                        </div>
+                    </div>
+                    <div class="today-weather-condition">
+                        <p>Feels like <%= current.feelsLike %>°C</p>
+                        <h3><%= current.currentCondition %></h3>
+                    </div>
+                </div>
+    
+                <div class="today-weather-details">
+                    <div class="today-item"><h3>Wind Speed</h3><h3><%= current.windSpeed %> KM/h</h3></div>
+                    <div class="today-item"><h3>Humidity</h3><h3><%= current.humidity %> g/m³</h3></div>
+                    <div class="today-item"><h3>Visibility</h3><h3><%= current.visibility%> KM</h3></div>
+                    <div class="today-item"><h3>UV Index</h3><h3><%= current.uvIndex %> </h3></div>
+                    <div class="today-item"><h3>Sunrise</h3><h3><%= current.sunrise %></h3></div>
+                    <div class="today-item"><h3>Sunset</h3><h3><%= current.sunset %></h3></div>
+                </div>
+    
+                <div class="weather-forecast">
+                    <%for(var i = 0; i < forecast.length; i++){%>
+                    <div class="forecast-item">
+                        <h3><%= forecast[i].forecastDate %></h3>
+                        <div class="forecast-item-temp">
+                            <img src=<%=forecast[i].forecastIconURL%> />
+                            <h3><%=forecast[i].forecastTemp%></h3>
+                        </div>
+                    </div>
+                    <%}%>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="logic.js"></script>
+</body>
+<footer>
+    <p>Developed by Kamran</p>
+</footer>
+</html>
